@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/home.css" />
+  </head>
+  <body>
+    <ul class="header-nav">
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+
+    <h2>Hello From EJS</h2>
+
+    <table style="width: 100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>FIRST NAME</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0; i < dataUsers.length; i++) { %>
+        <tr>
+          <td><%= dataUsers[i].id %></td>
+          <td><%= dataUsers[i].firstName %></td>
+          <td>
+            <button type="button">DETAIL</button>
+            <button type="button">EDIT</button>
+            <button type="button">DELETE</button>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <script>
+      const headerNav = document.querySelector(".header-nav");
+      const navList = headerNav.querySelectorAll("li a");
+      headerNav.addEventListener("click", (event) => {
+        navList.forEach((nav) => nav.classList.remove("active"));
+        const navItem = event.target.closest("a");
+        navItem.classList.add("active");
+      });
+    </script>
+  </body>
+</html>
