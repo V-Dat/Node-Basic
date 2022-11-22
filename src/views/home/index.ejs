@@ -31,18 +31,13 @@
         <tbody>
           <% for(var i=0; i < dataUsers.length; i++) { %>
           <tr>
-            <td><%= dataUsers[i].id %></td>
+            <td><%= i+1 %></td>
             <td><%= dataUsers[i].firstName %></td>
             <td><%= dataUsers[i].lastName %></td>
             <td><%= dataUsers[i].address %></td>
             <td style="display: flex; gap: 15px">
-              <form>
-                <a
-                  class="btn-detail"
-                  href="/detail/user/<%= dataUsers[i].id %>"
-                  target="_blank"
-                  >Detail</a
-                >
+              <form action="/detail-user/<%= dataUsers[i].id %>" method="GET">
+                <button type="submit">Detail</button>
               </form>
 
               <form action="/edit-user/<%= dataUsers[i].id %>" method="GET">
@@ -51,10 +46,11 @@
 
               <form action="/delete-user" method="POST">
                 <input
-                  type="text"
+                  style="display: none"
                   hidden
+                  type="text"
                   value="<%= dataUsers[i].id %>"
-                  name="userId"
+                  name="id"
                 />
                 <button type="submit">Delete</button>
               </form>
