@@ -17,47 +17,68 @@
 
     <h2>Hello From EJS</h2>
 
-    <table style="width: 100%">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>FIRST NAME</th>
-          <th>ACTION</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for(var i=0; i < dataUsers.length; i++) { %>
-        <tr>
-          <td><%= dataUsers[i].id %></td>
-          <td><%= dataUsers[i].firstName %></td>
-          <td style="display: flex; gap: 15px">
-            <form>
-              <a
-                class="btn-detail"
-                href="/detail/user/<%= dataUsers[i].id %>"
-                target="_blank"
-                >Detail</a
-              >
-            </form>
+    <div class="table-block">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>ADDRESS</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < dataUsers.length; i++) { %>
+          <tr>
+            <td><%= dataUsers[i].id %></td>
+            <td><%= dataUsers[i].firstName %></td>
+            <td><%= dataUsers[i].lastName %></td>
+            <td><%= dataUsers[i].address %></td>
+            <td style="display: flex; gap: 15px">
+              <form>
+                <a
+                  class="btn-detail"
+                  href="/detail/user/<%= dataUsers[i].id %>"
+                  target="_blank"
+                  >Detail</a
+                >
+              </form>
 
-            <form action="/edit-user/<%= dataUsers[i].id %>" method="GET">
-              <button type="submit">Edit</button>
-            </form>
+              <form action="/edit-user/<%= dataUsers[i].id %>" method="GET">
+                <button type="submit">Edit</button>
+              </form>
 
-            <form action="/delete-user" method="POST">
-              <input
-                type="text"
-                hidden
-                value="<%= dataUsers[i].id %>"
-                name="userId"
-              />
-              <button type="submit">Delete</button>
-            </form>
-          </td>
-        </tr>
-        <% } %>
-      </tbody>
-    </table>
+              <form action="/delete-user" method="POST">
+                <input
+                  type="text"
+                  hidden
+                  value="<%= dataUsers[i].id %>"
+                  name="userId"
+                />
+                <button type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="create-user">
+      <h2><b>Create new user:</b></h2>
+      <form action="/create-user" method="POST">
+        <label for="firstName">First Name : </label>
+        <input type="text" id="firstName" name="firstName" />
+        <label for="firstName">Last Name : </label>
+        <input type="text" id="lastName" name="lastName" />
+        <label for="firstName">Email : </label>
+        <input type="text" id="email" name="email" />
+        <label for="text">address : </label>
+        <input type="text" id="address" name="address" />
+        <button type="submit">Create</button>
+      </form>
+    </div>
+
     <script>
       const headerNav = document.querySelector(".header-nav");
       const navList = headerNav.querySelectorAll("li a");

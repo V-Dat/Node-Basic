@@ -54,3 +54,9 @@ table th {
     background-color: #04aa6d;
     color: white;
 }
+
+.table-block {
+    max-height: 70vh;
+    height: 70vh;
+    overflow: auto;
+}

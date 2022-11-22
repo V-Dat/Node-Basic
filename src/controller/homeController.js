@@ -14,9 +14,24 @@ async function getUserDetail(req, res) {
   return res.render("userDetail/index.ejs", { detailUser: rows[0] });
 }
 
+async function createUser(req, res) {
+  let { firstName, lastName, email, address } = req.body;
+  if (!firstName || !lastName || !email || !address) {
+    return res.status(200).json({
+      message: "missing required params",
+    });
+  }
+  await connectionPoll.execute(
+    "insert into users(firstName, lastName, email, address) values (?, ?, ?, ?)",
+    [firstName, lastName, email, address]
+  );
+  return res.redirect("/");
+}
+
 const homeController = {
   getUsers,
   getUserDetail,
+  createUser,
 };
 
 export default homeController;

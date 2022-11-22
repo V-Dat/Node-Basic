@@ -5,7 +5,11 @@ import configViewEngine from "./configs/viewEngine"; //ESModule
 import initRoutes from "./Routes/routes";
 
 const app = express();
-const port = process.env.PORT;
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+const port = process.env.PORT || 8080;
 configViewEngine(app);
 initRoutes(app);
 
