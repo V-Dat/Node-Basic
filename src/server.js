@@ -2,7 +2,7 @@
 const express = require("express"); // CommonJS
 require("dotenv").config(); // We can use method on CommonJS Syntax [Shorter than ESModule]
 import configViewEngine from "./configs/viewEngine"; //ESModule
-import initRoutes from "./Route/route";
+import initRoutes from "./Routes/routes";
 
 const app = express();
 const port = process.env.PORT;
